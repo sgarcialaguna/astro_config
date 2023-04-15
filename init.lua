@@ -81,5 +81,15 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+    local function filter_diagnostics(diag)
+      -- vim.notify(vim.inspect(diag))
+      if diag[1] and diag[1].source:find("Pyright", 1, true) then return {} end
+      return diag
+    end
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(_, result, ctx, config)
+      result.diagnostics = filter_diagnostics(result.diagnostics)
+      vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+    end, {})
   end,
 }
