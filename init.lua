@@ -83,7 +83,7 @@ return {
     -- }
     local function filter_diagnostics(diag)
       -- vim.notify(vim.inspect(diag))
-      if diag[1] and diag[1].source:find("Pyright", 1, true) then return {} end
+      if diag[1] and diag[1].source == "Pyright" then return {} end
       return diag
     end
 
