@@ -4,6 +4,7 @@
 -- lower level configuration and more robust one. (which-key will
 -- automatically pick-up stored data by this setting.)
 local telescope = require "telescope.builtin"
+local utils = require "astronvim.utils"
 return {
   -- first key is the mode
   n = {
@@ -25,6 +26,15 @@ return {
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     -- VSCode-like bindings
     ["<C-p>"] = { function() telescope.find_files() end, desc = "Find files" },
+    -- Open Lazygit in float
+    ["<leader>gg"] = {
+      function() utils.toggle_term_cmd { cmd = "lazygit", direction = "float" } end,
+      desc = "ToggleTerm lazygit",
+    },
+    ["<leader>tl"] = {
+      function() utils.toggle_term_cmd { cmd = "lazygit", direction = "float" } end,
+      desc = "ToggleTerm lazygit",
+    },
   },
   t = {
     -- setting a mapping to false will disable it
