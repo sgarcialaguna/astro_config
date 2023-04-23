@@ -31,20 +31,20 @@ return {
       utils.list_insert_unique(opts.ensure_installed, { "isort", "black", "pylint" })
     end,
   },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    opts = function(_, opts)
-      -- Ensure that opts.ensure_installed exists and is a table.
-      if not opts.ensure_installed then opts.ensure_installed = {} end
-      -- Add to opts.ensure_installed using table.insert.
-      utils.list_insert_unique(opts.ensure_installed, "python")
-    end,
-  },
-  {
-    "linux-cultist/venv-selector.nvim",
-    opts = {},
-    keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
-  },
+  -- {
+  --   "jay-babu/mason-nvim-dap.nvim",
+  --   opts = function(_, opts)
+  --     -- Ensure that opts.ensure_installed exists and is a table.
+  --     if not opts.ensure_installed then opts.ensure_installed = {} end
+  --     -- Add to opts.ensure_installed using table.insert.
+  --     utils.list_insert_unique(opts.ensure_installed, "python")
+  --   end,
+  -- },
+  -- {
+  --   "linux-cultist/venv-selector.nvim",
+  --   opts = {},
+  --   keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
+  -- },
   {
     -- This is needed for pylint to work in a virtualenv. See https://github.com/williamboman/mason.nvim/issues/668#issuecomment-1320859097
     "williamboman/mason.nvim",
