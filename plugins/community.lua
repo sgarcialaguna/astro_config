@@ -8,4 +8,7 @@ return {
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
   { import = "astrocommunity.code-runner.overseer-nvim" },
   { import = "astrocommunity.editing-support.nvim-ts-rainbow2" },
+  { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.typescript" },
 }
