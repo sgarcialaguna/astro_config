@@ -35,6 +35,7 @@ return {
       function() utils.toggle_term_cmd { cmd = "lazygit", direction = "float" } end,
       desc = "ToggleTerm lazygit",
     },
+    ["<F5>"] = { "<cmd>OverseerRun<cr>", desc = "Run task" },
   },
   t = {
     -- setting a mapping to false will disable it
