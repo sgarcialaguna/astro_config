@@ -5,13 +5,13 @@ return {
     opts = {
       PATH = "append",
     },
-    {
-      "williamboman/mason-lspconfig.nvim",
-      opts = function(_, opts)
-        -- Ensure that opts.ensure_installed exists and is a table.
-        if not opts.ensure_installed then opts.ensure_installed = {} end
-        opts.ensure_installed = { "jedi_language_server" }
-      end,
-    },
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      -- Ensure that opts.ensure_installed exists and is a table.
+      if not opts.ensure_installed then opts.ensure_installed = {} end
+      opts.ensure_installed = { "jedi_language_server" }
+    end,
   },
 }
