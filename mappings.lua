@@ -26,6 +26,8 @@ return {
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     -- VSCode-like bindings
     ["<C-p>"] = { function() telescope.find_files() end, desc = "Find files" },
+    ["<C-t>"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
+    ["<leader>fs"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
     -- Open Lazygit in float
     ["<leader>gg"] = {
       function() utils.toggle_term_cmd { cmd = "lazygit", direction = "float" } end,
