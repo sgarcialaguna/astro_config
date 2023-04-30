@@ -22,9 +22,8 @@ return {
   diagnostics = {
     virtual_text = true,
     underline = true,
-    disabled = {
-      "pyright",
-      "tsserver",
+    flags = {
+      debounce_textchanges = 150,
     },
   },
   lsp = {
@@ -39,10 +38,6 @@ return {
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
         },
-      },
-      disabled = { -- disable formatting capabilities for the listed language servers
-        -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
-        -- "lua_ls",
       },
       timeout_ms = 1000, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
@@ -80,5 +75,16 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+    local function filter_diagnostics(diag)
+      -- vim.notify(vim.inspect(diag))
+      if diag[1] and diag[1].source == "Pyright" then return {} end
+      if diag[1] and diag[1].source == "typescript" then return {} end
+      return diag
+    end
+
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(function(_, result, ctx, config)
+      result.diagnostics = filter_diagnostics(result.diagnostics)
+      vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+    end, {})
   end,
 }
