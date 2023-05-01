@@ -43,6 +43,12 @@ return {
       desc = "ToggleTerm lazygit",
     },
     ["<F5>"] = { "<cmd>OverseerRun<cr>", desc = "Run task" },
+    ["<A-j>"] = { ":m .+1<CR>", desc = "Move line down" },
+    ["<A-k>"] = { ":m .-2<CR>", desc = "Move line up" },
+  },
+  v = {
+    ["<A-j>"] = { ":m .+1<CR>gv=gv", desc = "Move line down" },
+    ["<A-k>"] = { ":m .-2<CR>gv=gv", desc = "Move line up" },
   },
   t = {
     -- setting a mapping to false will disable it
