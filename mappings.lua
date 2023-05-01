@@ -54,6 +54,7 @@ return {
     ["P"] = "<Plug>(YoinkPaste_P)",
     ["gp"] = "<Plug>(YoinkPaste_gp)",
     ["gP"] = "<Plug>(YoinkPaste_gP)",
+    ["y"] = "<Plug>(YoinkYankPreserveCursorPosition)",
 
     ["<F5>"] = { "<cmd>OverseerRun<cr>", desc = "Run task" },
     ["<A-j>"] = { ":m .+1<CR>", desc = "Move line down" },
@@ -62,6 +63,9 @@ return {
   v = {
     ["<A-j>"] = { ":m .+1<CR>gv=gv", desc = "Move line down" },
     ["<A-k>"] = { ":m .-2<CR>gv=gv", desc = "Move line up" },
+  },
+  x = {
+    ["y"] = "<Plug>(YoinkYankPreserveCursorPosition)",
   },
   t = {
     -- setting a mapping to false will disable it
