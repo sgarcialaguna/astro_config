@@ -24,9 +24,11 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-    ["<leader>c"] = "c", -- leader c to cut
-    ["<leader>d"] = "d", -- leader d to cut
-    ["<leader>D"] = "D", -- leader D to cut
+    ["<leader>c"] = { "c", desc = "change and yank" },
+    ["<leader>C"] = { "C", desc = "change rest of line and yank" },
+    ["<leader>d"] = { "d", desc = "delete and yank" },
+    ["<leader>D"] = { "D", desc = "delete rest of line and yank" },
+    ["<leader>q"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" },
     -- VSCode-like bindings
     ["<C-p>"] = { function() telescope.find_files() end, desc = "Find files" },
     ["<C-t>"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
@@ -49,8 +51,8 @@ return {
     },
 
     -- Yoink
-    ["<C-j>"] = "<Plug>(YoinkPostPasteSwapBack)",
-    ["<C-k>"] = "<Plug>(YoinkPostPasteSwapForward)",
+    ["<A-Down>"] = "<Plug>(YoinkPostPasteSwapBack)",
+    ["<A-Up>"] = "<Plug>(YoinkPostPasteSwapForward)",
     ["p"] = "<Plug>(YoinkPaste_p)",
     ["P"] = "<Plug>(YoinkPaste_P)",
     ["gp"] = "<Plug>(YoinkPaste_gp)",
