@@ -17,6 +17,12 @@ return {
         },
       },
     },
+    pickers = {
+      -- Manually set sorter, for some reason not picked up automatically
+      -- lsp_dynamic_workspace_symbols = {
+      --   sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
+      -- },
+    },
     extension = {
       fzf = fzf_opts,
     },
