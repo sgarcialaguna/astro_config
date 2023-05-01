@@ -28,6 +28,9 @@ return {
     ["<C-p>"] = { function() telescope.find_files() end, desc = "Find files" },
     ["<C-t>"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
     ["<leader>fs"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
+    ["<leader>gh"] = false,
+    ["<leader>gr"] = { function() require("gitsigns").reset_hunk() end, desc = "Reset Git hunk" },
+    ["<leader>gR"] = { function() require("gitsigns").reset_buffer() end, desc = "Reset Git buffer" },
     -- Open Lazygit in float
     ["<leader>gg"] = {
       function() utils.toggle_term_cmd { cmd = "lazygit", direction = "float" } end,
