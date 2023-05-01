@@ -46,6 +46,15 @@ return {
       function() require("astronvim.utils.buffer").close_all(true) end,
       desc = "Close all buffers except current",
     },
+
+    -- Yoink
+    ["<C-j>"] = "<Plug>(YoinkPostPasteSwapBack)",
+    ["<C-k>"] = "<Plug>(YoinkPostPasteSwapForward)",
+    ["p"] = "<Plug>(YoinkPaste_p)",
+    ["P"] = "<Plug>(YoinkPaste_P)",
+    ["gp"] = "<Plug>(YoinkPaste_gp)",
+    ["gP"] = "<Plug>(YoinkPaste_gP)",
+
     ["<F5>"] = { "<cmd>OverseerRun<cr>", desc = "Run task" },
     ["<A-j>"] = { ":m .+1<CR>", desc = "Move line down" },
     ["<A-k>"] = { ":m .-2<CR>", desc = "Move line up" },

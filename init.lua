@@ -128,5 +128,9 @@ return {
       result.diagnostics = filter_diagnostics(result.diagnostics)
       vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
     end, {})
+
+    vim.g.yoinkIncludeDeleteOperations = 1
+    vim.g.yoinkSavePersistently = 1
+    vim.g.AutoFormatPaste = 1
   end,
 }
