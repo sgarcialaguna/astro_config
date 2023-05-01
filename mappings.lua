@@ -42,6 +42,10 @@ return {
       function() utils.toggle_term_cmd { cmd = "lazygit", direction = "float" } end,
       desc = "ToggleTerm lazygit",
     },
+    ["<leader>o"] = {
+      function() require("astronvim.utils.buffer").close_all(true) end,
+      desc = "Close all buffers except current",
+    },
     ["<F5>"] = { "<cmd>OverseerRun<cr>", desc = "Run task" },
     ["<A-j>"] = { ":m .+1<CR>", desc = "Move line down" },
     ["<A-k>"] = { ":m .-2<CR>", desc = "Move line up" },
