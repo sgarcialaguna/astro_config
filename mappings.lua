@@ -24,11 +24,6 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
-    ["<leader>c"] = { "c", desc = "change and yank" },
-    ["<leader>C"] = { "C", desc = "change rest of line and yank" },
-    ["<leader>d"] = { "d", desc = "delete and yank" },
-    ["<leader>D"] = { "D", desc = "delete rest of line and yank" },
-    ["<leader>q"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" },
     -- VSCode-like bindings
     ["<C-p>"] = { function() telescope.find_files() end, desc = "Find files" },
     ["<C-t>"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
