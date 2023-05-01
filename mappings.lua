@@ -24,6 +24,8 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<leader>c"] = "c", -- leader c to cut
+    ["<leader>d"] = "d", -- leader d to cut
     -- VSCode-like bindings
     ["<C-p>"] = { function() telescope.find_files() end, desc = "Find files" },
     ["<C-t>"] = { function() telescope.lsp_dynamic_workspace_symbols() end, desc = "Find workspace symbols" },
