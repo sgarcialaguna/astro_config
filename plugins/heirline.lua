@@ -1,8 +1,103 @@
+local status = require "astronvim.utils.status"
+local M = status
+local utils = require "astronvim.utils"
+local get_icon = utils.get_icon
+
+local make_buflist = function(component)
+  local overflow_hl = M.hl.get_attributes("buffer_overflow", true)
+  return require("heirline.utils").make_buflist(
+    M.utils.surround(
+      "tab",
+      function(self)
+        return {
+          main = M.heirline.tab_type(self) .. "_bg",
+          left = "tabline_bg",
+          right = "tabline_bg",
+        }
+      end,
+      {
+        -- bufferlist
+        init = function(self) self.tab_type = M.heirline.tab_type(self) end,
+        on_click = {
+          -- add clickable component to each buffer
+          callback = function(_, minwid, _, button)
+            if button == "m" then -- close on mouse middle click
+              require("astronvim.utils.buffer").close(minwid)
+            else
+              vim.api.nvim_win_set_buf(0, minwid)
+            end
+          end,
+          minwid = function(self) return self.bufnr end,
+          name = "heirline_tabline_buffer_callback",
+        },
+        {
+          -- add buffer picker functionality to each buffer
+          condition = function(self) return self._show_picker end,
+          update = false,
+          init = function(self)
+            if not (self.label and self._picker_labels[self.label]) then
+              local bufname = M.provider.filename()(self)
+              local label = bufname:sub(1, 1)
+              local i = 2
+              while label ~= " " and self._picker_labels[label] do
+                if i > #bufname then break end
+                label = bufname:sub(i, i)
+                i = i + 1
+              end
+              self._picker_labels[label] = self.bufnr
+              self.label = label
+            end
+          end,
+          provider = function(self) return M.provider.str { str = self.label, padding = { left = 1, right = 1 } } end,
+          hl = M.hl.get_attributes "buffer_picker",
+        },
+        component, -- create buffer component
+      },
+      false        -- disable surrounding
+    ),
+    { provider = get_icon "ArrowLeft" .. " ", hl = overflow_hl },
+    { provider = get_icon "ArrowRight" .. " ", hl = overflow_hl },
+    function() return vim.t.bufs end, -- use astronvim bufs variable
+    false                             -- disable internal caching
+  )
+end
+
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
-    local status = require "astronvim.utils.status"
-
+    opts.tabline = { -- bufferline
+      {
+        -- file tree padding
+        condition = function(self)
+          self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
+          return status.condition.buffer_matches(
+            { filetype = { "aerial", "dapui_.", "neo%-tree", "NvimTree" } },
+            vim.api.nvim_win_get_buf(self.winid)
+          )
+        end,
+        provider = function(self) return string.rep(" ", vim.api.nvim_win_get_width(self.winid) + 1) end,
+        hl = { bg = "tabline_bg" },
+      },
+      make_buflist(status.component.tabline_file_info()),   -- component for each buffer tab
+      status.component.fill { hl = { bg = "tabline_bg" } }, -- fill the rest of the tabline with background color
+      {
+        -- tab list
+        condition = function() return #vim.api.nvim_list_tabpages() >= 2 end, -- only show tabs if there are more than one
+        status.heirline.make_tablist {                                        -- component for each tab
+          provider = status.provider.tabnr(),
+          hl = function(self) return status.hl.get_attributes(status.heirline.tab_type(self, "tab"), true) end,
+        },
+        {
+          -- close button for current tab
+          provider = status.provider.close_button { kind = "TabClose", padding = { left = 1, right = 1 } },
+          hl = status.hl.get_attributes("tab_close", true),
+          on_click = {
+            callback = function() require("astronvim.utils.buffer").close_tab() end,
+            name = "heirline_tabline_close_tab_callback",
+          },
+        },
+      },
+    }
     opts.winbar = {
       -- create custom winbar
       -- store the current buffer number
