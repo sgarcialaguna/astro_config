@@ -90,6 +90,11 @@ return {
     servers = {
       -- "pyright"
     },
+    config = {
+      pyright = {
+        on_attach = function(client, bufnr) client.server_capabilities.signatureHelpProvider = nil end,
+      },
+    },
   },
   -- Configure require("lazy").setup() options
   lazy = {
