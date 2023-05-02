@@ -1,6 +1,6 @@
 return {
   "gbprod/cutlass.nvim",
-  event = "VeryLazy",
+  lazy = false,
   config = {
     cut_key = "x",
     override_del = true,

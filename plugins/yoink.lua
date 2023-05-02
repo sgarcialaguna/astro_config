@@ -1,4 +1,4 @@
 return {
   "svermeulen/vim-yoink",
-  event = "VeryLazy",
+  lazy = false,
 }
