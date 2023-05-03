@@ -38,6 +38,12 @@ return {
         end
       end, { "i", "s" })
 
+      config.performance = {
+        debounce = 300,
+        throttle = 60,
+        fetching_timeout = 200,
+      }
+
       return config
     end,
   },
