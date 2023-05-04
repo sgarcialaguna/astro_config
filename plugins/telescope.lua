@@ -10,6 +10,7 @@ return {
   "nvim-telescope/telescope.nvim",
   opts = {
     defaults = {
+      file_ignore_patterns = { ".git/", "node_modules", "build" },
       show_hidden = true,
       mappings = {
         i = {
@@ -18,10 +19,13 @@ return {
       },
     },
     pickers = {
+      find_files = {
+        find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*,!.yarn/*" },
+      },
       -- Manually set sorter, for some reason not picked up automatically
-      -- lsp_dynamic_workspace_symbols = {
-      --   sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
-      -- },
+      lsp_dynamic_workspace_symbols = {
+        sorter = require("telescope").extensions.fzf.native_fzf_sorter(fzf_opts),
+      },
     },
     extension = {
       fzf = fzf_opts,
