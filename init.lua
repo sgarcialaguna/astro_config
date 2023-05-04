@@ -64,11 +64,11 @@ return {
   diagnostics = {
     virtual_text = true,
     underline = true,
-    flags = {
-      debounce_textchanges = 150,
-    },
   },
   lsp = {
+    flags = {
+      debounce_text_changes = 150,
+    },
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
@@ -94,9 +94,9 @@ return {
       pyright = {
         on_attach = function(client, bufnr) client.server_capabilities.signatureHelpProvider = nil end,
       },
-      jedi_language_server = {
-        on_attach = function(client, bufnr) client.server_capabilities.completionProvider = nil end,
-      },
+      -- jedi_language_server = {
+      --   on_attach = function(client, bufnr) client.server_capabilities.completionProvider = nil end,
+      -- },
     },
   },
   -- Configure require("lazy").setup() options
