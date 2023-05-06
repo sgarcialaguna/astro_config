@@ -180,6 +180,7 @@ return {
       status.component.git_branch { surround = { separator = "none" } },
       -- add a component for the current git diff if it exists and use no separator for the sections
       status.component.git_diff { padding = { left = 1 }, surround = { separator = "none" } },
+      status.component.cmd_info(),
       -- fill the rest of the statusline
       -- the elements after this will appear in the middle of the statusline
       status.component.fill(),
